@@ -1,53 +1,51 @@
-#include "main.h"
 #include <stdio.h>
+#include "main.h"
 #include <stdarg.h>
+#include <unistd.h>
+
 
 int _printf(const char *format, ...)
 {
+	int chara_print = 0;
 	va_list args;
+	if (format == NULL)
+		return -1;
 	va_start(args, format);
-	int counter = 0, i = 0;
-
-	for (i = 0; format[i] != '\0'; i++)
+	while (*format)
 	{
-		if (format[i] == '%')
+		if (*format != '%')
 		{
-			i++;
-
-			if (format[i] == 'c')
-			{
-				char c = va_arg(args, int);
-				putchar(c);
-				counter++;
-			}
-			else if (format[i] == 's')
-			{
-				char *s = va_arg(args, char *);
-				while (*s)
-				{
-					putchar(*s++);
-					counter++;
-				}
-			}
-			else if (format[i] == '%')
-			{
-				putchar('%');
-				counter++;
-			}
-			else
-			{
-				putchar('%');
-				putchar(format[i]);
-				counter += 2;
-			}
+			write(1, format, 1);
+			chara_print++;
 		}
 		else
 		{
-			putchar(format[i]);
-			counter++;
+			format++;
+			if (*format == '\0')
+				break;
+			if (*format == '%')
+			{
+				write(1, format, 1);
+				chara_print++;
+			}
+			else if (*format == 'c')
+			{
+				char c = (char)va_arg(args, int);
+				write(1, &c, 1);
+				chara_print++;
+			}
+			else if (*format == 's')
+			{
+				char *str = va_arg(args, char *);
+				int str_len = 0;
+				while (str[str_len] != '\0')
+					str_len++;
+				write(1, str, str_len);
+				chara_print += str_len;
+			}
 		}
+		format++;
 	}
-
 	va_end(args);
-	return (counter);
+	return chara_print;
 }
