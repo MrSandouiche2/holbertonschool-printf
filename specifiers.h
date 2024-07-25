@@ -12,7 +12,6 @@ typedef struct specifier
 int print_char(va_list args);
 int print_string(va_list args);
 int print_int(va_list args);
-
-int (*get_func(char spec))(va_list);
+int(*get_func(char spec))(va_list);
 
 #endif
