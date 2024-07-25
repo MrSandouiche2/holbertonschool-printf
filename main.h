@@ -3,6 +3,6 @@
 
 #include <stdarg.h>
 
-int print_str(va_list val);
+int _printf(const char *format, ...);
 
 #endif
