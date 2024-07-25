@@ -2,6 +2,17 @@
 #include "main.h"
 #include <stdarg.h>
 #include <unistd.h>
+
+int _strlen(const char *str)
+{
+	int length = 0;
+	while (str[length] != '\0')
+	{
+		length++;
+	}
+	return length;
+}
+
 int _printf(const char *format, ...)
 {
 	int chara_print = 0;
@@ -34,7 +45,7 @@ int _printf(const char *format, ...)
 			{
 				char c;
 				c = (char)va_arg(args, int);
- 				write(1, &c, 1);
+				write(1, &c, 1);
 				chara_print++;
 			}
 			else if (*format == 's')
@@ -46,9 +57,7 @@ int _printf(const char *format, ...)
 				{
 					str = "(null)";
 				}
-				str_len = 0;
-				while (str[str_len] != '\0')
-					str_len++;
+				str_len = _strlen(str);
 				write(1, str, str_len);
 				chara_print += str_len;
 			}
