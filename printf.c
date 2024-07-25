@@ -34,7 +34,7 @@ int _printf(const char *format, ...)
 			{
 				char c;
 				c = (char)va_arg(args, int);
-				write(1, &c, 1);
+ 				write(1, &c, 1);
 				chara_print++;
 			}
 			else if (*format == 's')
