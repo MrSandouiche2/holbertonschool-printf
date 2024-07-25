@@ -2,7 +2,6 @@
 #include "main.h"
 #include <stdarg.h>
 #include <unistd.h>
-
 int _printf(const char *format, ...)
 {
 	int chara_print = 0;
