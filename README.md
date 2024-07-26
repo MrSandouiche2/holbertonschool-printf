@@ -10,6 +10,8 @@ The `_printf` function supports the following format specifiers:
 - `%c` : Prints a character.
 - `%s` : Prints a string.
 - `%%` : Prints a literal percent sign.
+- `%i` : Prints an integer in decimal format
+- `%d` : Prints a decimal integer
 
 ## Function Signature
 
